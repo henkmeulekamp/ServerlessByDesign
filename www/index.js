@@ -83,6 +83,10 @@ var nodeTypes = {
     name: 'Step Function',
     image: './img/aws/ApplicationServices_AWSStepFunctions.png'
   },
+  sqs: {
+    name: 'SQS',
+    image: './img/aws/Messaging_AmazonSQS'
+  },
 };
 
 var nodeConnections = {
@@ -114,10 +118,12 @@ var nodeConnections = {
     deliveryStream: { action: 'target' },
     stream: { action: 'target' },
     topic: { action: 'target' },
-    fn: { action: 'target' }
+    fn: { action: 'target' },
+    sqs: { action: 'message' }
   },
   topic: {
-    fn: { action: 'trigger' }
+    fn: { action: 'trigger' },
+    sqs: { action: 'message' }
   },
   fn: {
     bucket: { action: 'read/write' },
@@ -127,10 +133,12 @@ var nodeConnections = {
     deliveryStream: { action: 'put' },
     topic: { action: 'notification' },
     fn: { action: 'invoke' },
-    stepFn: { action: 'activity' }
+    stepFn: { action: 'activity' },
+    sqs: { action: 'message' }
   },
   stepFn: {
     fn: { action: 'invoke' },
+    sqs: { action: 'message' }
   },
   cognitoIdentity:  {
     fn: { action: 'authorize' },
