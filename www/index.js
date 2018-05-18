@@ -84,8 +84,8 @@ var nodeTypes = {
     image: './img/aws/ApplicationServices_AWSStepFunctions.png'
   },
   sqs: {
-    name: 'SQS',
-    image: './img/aws/Messaging_AmazonSQS'
+    name: 'SQS Queue',
+    image: './img/aws/Messaging_AmazonSQS.png'
   },
 };
 
@@ -124,6 +124,9 @@ var nodeConnections = {
   topic: {
     fn: { action: 'trigger' },
     sqs: { action: 'message' }
+  },
+  sqs: {
+    sqs: { action: 'dead-letter' }
   },
   fn: {
     bucket: { action: 'read/write' },
